@@ -322,15 +322,23 @@ String OnlineUnlockStatus::MachineIDUtilities::getUniqueMachineID()
 StringArray OnlineUnlockStatus::MachineIDUtilities::getLocalMachineIDs()
 {
 #if JUCE_USE_BETTER_MACHINE_IDS
-    return { getUniqueMachineID() };
+    // 使用显式类型转换组合枚举值
+    auto flags = static_cast<int>(SystemStats::MachineIdFlags::macAddresses)
+        | static_cast<int>(SystemStats::MachineIdFlags::fileSystemId)
+        | static_cast<int>(SystemStats::MachineIdFlags::legacyUniqueId)
+        | static_cast<int>(SystemStats::MachineIdFlags::uniqueId);
+    
+    auto identifiers = SystemStats::getMachineIdentifiers(
+        static_cast<SystemStats::MachineIdFlags>(flags)
+    );
 #else
     auto identifiers = SystemStats::getDeviceIdentifiers();
+#endif
 
     for (auto& identifier : identifiers)
-        identifier = getEncodedIDString (identifier);
+        identifier = getEncodedIDString(identifier);
 
     return identifiers;
-#endif
 }
 
 StringArray OnlineUnlockStatus::getLocalMachineIDs()

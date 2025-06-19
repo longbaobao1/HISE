@@ -29,7 +29,7 @@
 *
 *   ===========================================================================
 */
-
+#pragma execution_character_set("utf-8")
 namespace hise { using namespace juce;
 
 DeactiveOverlay::DeactiveOverlay(MainController* mc) :
@@ -48,12 +48,12 @@ DeactiveOverlay::DeactiveOverlay(MainController* mc) :
 
 	addAndMakeVisible(resolveLicenseButton = new TextButton("Use License File"));
 	addAndMakeVisible(registerProductButton = new TextButton("Activate this computer"));
-	addAndMakeVisible(resolveSamplesButton = new TextButton("Choose Sample Folder"));
-
+	addAndMakeVisible(resolveSamplesButton = new TextButton("Select Library"));
+	
 	addAndMakeVisible(installSampleButton = new TextButton("Install Samples"));
-
+	
 	addAndMakeVisible(ignoreButton = new TextButton("Ignore"));
-
+	
 	resolveLicenseButton->setLookAndFeel(alaf);
 	resolveSamplesButton->setLookAndFeel(alaf);
 	registerProductButton->setLookAndFeel(alaf);
@@ -115,7 +115,7 @@ void DeactiveOverlay::buttonClicked(Button *b)
 			}
 		}
 		
-		FileChooser fc("Select Sample Location", FrontendHandler::getSampleLocationForCompiledPlugin(), "*.*", true);
+		FileChooser fc("Select Library", FrontendHandler::getSampleLocationForCompiledPlugin(), "*.*", true);
 
 		if (fc.browseForDirectory())
 		{
@@ -132,7 +132,7 @@ void DeactiveOverlay::buttonClicked(Button *b)
 
 				if (handler.areSampleReferencesCorrect())
 				{
-					PresetHandler::showMessageWindow("Sample Folder changed", "The sample folder was relocated, but you might need to open a new instance of this plugin before it can be used.");
+					PresetHandler::showMessageWindow("Tips", "请移除插件后重新加载插件");
 				}
 
 				setStateInternal(State::SamplesNotFound, !handler.areSampleReferencesCorrect());

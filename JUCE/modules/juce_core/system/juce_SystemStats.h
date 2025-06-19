@@ -247,12 +247,21 @@ public:
     */
     static bool isRunningInAppExtensionSandbox() noexcept;
 
-
     //==============================================================================
    #ifndef DOXYGEN
     [[deprecated ("This method was spelt wrong! Please change your code to use getCpuSpeedInMegahertz instead.")]]
     static int getCpuSpeedInMegaherz() { return getCpuSpeedInMegahertz(); }
    #endif
+
+     enum class MachineIdFlags
+    {
+        fileSystemId     = 1 << 0,
+        macAddresses     = 1 << 1,
+        legacyUniqueId   = 1 << 2,
+        uniqueId         = 1 << 3
+    };
+
+    static StringArray getMachineIdentifiers (MachineIdFlags flags);
 
 private:
     SystemStats() = delete; // uses only static methods

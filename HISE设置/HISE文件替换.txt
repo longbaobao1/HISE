@@ -1,0 +1,15 @@
+HISE-develop\hi_core\hi_images
+
+HISE-develop1\hi_core\hi_components\plugin_components
+FrontendBar.cpp
+
+HISE-develop\hi_core\hi_components\midi_overlays
+
+
+HISE_SAMPLE_DIALOG_SHOW_INSTALL_BUTTON=0
+HISE_SAMPLE_DIALOG_SHOW_LOCATE_BUTTON=1
+ENABLE_ALL_PEAK_METERS=1
+
+hi_core\hi_core\MainControllerHelpers.cpp 第1865行
+将"Please click below to point to the location where you've already installed the samples.";置空
+

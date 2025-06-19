@@ -1862,7 +1862,7 @@ String OverlayMessageBroadcaster::getOverlayTextMessage(State s) const
 #elif HISE_SAMPLE_DIALOG_SHOW_INSTALL_BUTTON
 		return "Please click below to install the samples from the downloaded archive.";
 #elif HISE_SAMPLE_DIALOG_SHOW_LOCATE_BUTTON
-		return "Please click below to point to the location where you've already installed the samples.";
+		return "";
 #else
 		return "This should never show :)";
 		jassertfalse;
